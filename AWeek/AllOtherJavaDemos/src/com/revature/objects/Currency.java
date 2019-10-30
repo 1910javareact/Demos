@@ -39,7 +39,7 @@ public class Currency {
 	public static void exchangeRate(String name, double multiplier) {
 		System.out.println("A USdollar is worth " + defaultValue/multiplier + " of your currency, " + name);
 		
-		//can't use this, becuase static things have no object reference
+		//can't use this, because static things have no object reference
 		//can't call instance methods, because static methods don;t have access to copies of instance methods
 		//this.spend();
 	}
