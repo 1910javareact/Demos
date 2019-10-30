@@ -3,13 +3,13 @@ package com.revature.inheritance;
 //I don't need to write extends object, it is implicit
 public class Plant extends Object {
 	
-	int size;
+	private int size;
 	
-	String description;
+	private String description;
 	
-	String color;
+	private String color;
 	
-	String climate;
+	private String climate;
 	
 	Plant(){
 		super();//this is making an object because plant is a plant and an object
@@ -31,4 +31,12 @@ public class Plant extends Object {
 	public String grow() {
 		return "The plant is growing quickly";
 	}
+	
+	public int getSize() {
+		return this.size;
+	}
+	public void setSize(int size) {
+		this.size = size;
+	}
+	
 }

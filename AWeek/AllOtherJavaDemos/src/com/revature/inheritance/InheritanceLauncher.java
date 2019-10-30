@@ -18,6 +18,10 @@ public class InheritanceLauncher {
 		System.out.println(((Cactus) c1).grow(0));
 		Plant f1 = new Flower(2, "water monthly", "yellow", "in gardens", "yellow hibiscus", 10);
 		System.out.println(f1);
+		//now we can access the private field, using our getter
+		System.out.println(c1.getSize());
+		c1.setSize(10);
+		System.out.println(c1.getSize());
 		
 		
 
