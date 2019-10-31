@@ -11,11 +11,11 @@ public class Plant extends Object {
 	
 	private String climate;
 	
-	Plant(){
+	public Plant(){
 		super();//this is making an object because plant is a plant and an object
 	}
 	
-	Plant(int size, String description, String color, String climate){
+	public Plant(int size, String description, String color, String climate){
 		this.size = size;
 		this.description = description;
 		this.color = color;
