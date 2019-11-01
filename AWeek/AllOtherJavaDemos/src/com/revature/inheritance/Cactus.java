@@ -4,11 +4,11 @@ public class Cactus extends Plant{
 	
 	String thornyness;
 	
-	Cactus(){
+	public Cactus(){
 		super();//this super is going to call the default Plant constructor
 	}
 	
-	Cactus(int size, String description, String color, String climate, String thornyness){
+	public Cactus(int size, String description, String color, String climate, String thornyness){
 		super(size, description, color, climate);//calls the plan constructor with some values
 		this.thornyness = thornyness;//sets the cactus value
 	}
