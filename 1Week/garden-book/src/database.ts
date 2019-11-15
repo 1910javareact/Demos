@@ -6,3 +6,7 @@ export let gardens = [
     new Garden("Babylon", 100, 1),
     new Garden("Olbrich", 75, 2),
 ]
+
+export let posts = [
+    
+]

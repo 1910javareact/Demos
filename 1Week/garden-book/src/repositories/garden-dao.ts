@@ -1,5 +1,5 @@
 import { Garden } from "../models/garden";
-import { gardens } from "../state";
+import { gardens } from "../database";
 
 //the purpose of this file is to contain functions for interacting with the database
 //we don't have one yet, but when we do, it should be easy to change
