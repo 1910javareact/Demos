@@ -1,7 +1,7 @@
 import { Garden } from "./garden"
 
 
-export class Posts{
+export class Post{
     body:string
     author:Garden
     numLikes:number
