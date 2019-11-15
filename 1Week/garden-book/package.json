@@ -1,0 +1,21 @@
+{
+  "name": "garden-book",
+  "version": "1.0.0",
+  "description": "facebook, but for gardens",
+  "main": "src/index.ts",
+  "scripts": {
+    "start": "ts-node src/index.ts",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Us",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "express": "^4.17.1"
+  },
+  "devDependencies": {
+    "@types/express": "^4.17.2",
+    "ts-node": "^8.5.2",
+    "typescript": "^3.7.2"
+  }
+}
