@@ -1,7 +1,8 @@
 import express from 'express'
 import bodyparser from 'body-parser'
-import { gardens } from './state'
-import { getAllGardens } from './services/garden-service'
+
+import { getAllGardens, saveOneGarden } from './services/garden-service'
+import { Garden } from './models/garden'
 
 const app = express()//this line builds the application from express
 
@@ -18,17 +19,20 @@ const app = express()//this line builds the application from express
 //then it will fall through to the next endpoint
 app.use(bodyparser.json())
 
-//you can only send one response
-//so as soon as a more general endpoint ends a response, the specific ones lose the ability to
-app.get('/gardens', (req,res)=>{
+
+//an example of not using arrow functions
+function controllerGetGardens(req, res){
     let gardens = getAllGardens()//this function is in services
     if(gardens){        //its purpose is to process getting all gardens
         res.json(gardens)
     }else{
         res.sendStatus(500)
     }
-    
-})
+
+}
+//you can only send one response
+//so as soon as a more general endpoint ends a response, the specific ones lose the ability to
+app.get('/gardens', controllerGetGardens)
 
 app.get('/posts', (req,res)=>{
     res.json({
@@ -44,7 +48,23 @@ app.get('/posts', (req,res)=>{
 //we should revise this and do data checking
 app.post('/gardens', (req,res)=>{
     let {body} = req//destructuring
-    gardens.push(body)
+    let newG = new Garden('',0,0)
+    for(let key in newG){
+        if(!body[key]){
+            res.status(400).send('Please include all garden fields')
+            break;
+        }else{
+            newG[key] = body[key]
+        }
+    }
+    if(saveOneGarden(newG)){
+        res.sendStatus(201)
+    }else {
+        res.sendStatus(500)
+    }
+
+
+
     res.sendStatus(201)
 })
 
