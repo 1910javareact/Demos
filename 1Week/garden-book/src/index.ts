@@ -1,13 +1,11 @@
 import express from 'express'
 import bodyparser from 'body-parser'
+import { gardens } from './state'
+import { getAllGardens } from './services/garden-service'
 
 const app = express()//this line builds the application from express
 
-let gardens = [{
-    name:'babylon',
-    prettiness:100
-},
-]
+
 //req is the request object from the client
 //res is the response object we send out
 // app.use('/', (req, res)=>{ //our first endpoint on uri /
@@ -23,7 +21,13 @@ app.use(bodyparser.json())
 //you can only send one response
 //so as soon as a more general endpoint ends a response, the specific ones lose the ability to
 app.get('/gardens', (req,res)=>{
-    res.json(gardens)
+    let gardens = getAllGardens()//this function is in services
+    if(gardens){        //its purpose is to process getting all gardens
+        res.json(gardens)
+    }else{
+        res.sendStatus(500)
+    }
+    
 })
 
 app.get('/posts', (req,res)=>{
