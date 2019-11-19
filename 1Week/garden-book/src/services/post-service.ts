@@ -17,13 +17,13 @@ export function likePost(id:number, garden:Garden){
         if(post.gardensWhoLiked[i].id === garden.id){
             post.numLikes--
             post.gardensWhoLiked.splice(i,1)
-            pdao.daoSaveOnePost(post)
+            pdao.daoUpdatePost(post)
             return post
         }
     }
     post.numLikes++
     post.gardensWhoLiked.push(garden)
-    pdao.daoSaveOnePost(post)
+    pdao.daoUpdatePost(post)
     return post
     
 

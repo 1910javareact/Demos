@@ -39,3 +39,12 @@ export function daoFindPostById(id:number):Post{
         message:'NoSuchPost'
     }
 }
+
+export function daoUpdatePost(post:Post){
+    let newPosts = [...posts]
+    for(let i = 0; i < newPosts.length; i++ ){
+        if(newPosts[i].id === post.id){
+            newPosts[i] = post
+        }
+    }
+}
