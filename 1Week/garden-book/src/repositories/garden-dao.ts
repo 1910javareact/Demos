@@ -16,3 +16,27 @@ export function daoSaveOneGarden(g:Garden){
     gardens.push(g)
     return true
 }
+
+export function daoGetGardenById(id:number):Garden{
+    for(let g of gardens){
+        if(g.id === id){
+            return g
+        }
+    }
+    throw {
+        status:404,
+        message:'this garden does not exist'
+    }//this is an error
+}
+
+export function daoGetGardenByUsernameAndPassword(username:string, password:string){
+    for(let g of gardens){
+        if(g.username === username && g.password === password){
+            return g
+        }
+    }
+    throw {
+        status: 401,
+        message: 'Bad credentials'
+    }
+}

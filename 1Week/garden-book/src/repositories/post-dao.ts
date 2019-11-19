@@ -27,3 +27,15 @@ export function daoSaveOnePost(p:Post):boolean{
         throw 500
 
 }
+
+export function daoFindPostById(id:number):Post{
+    for(let p of posts){
+        if(p.id === id){
+            return p
+        }
+    }
+    throw{
+        status:404,
+        message:'NoSuchPost'
+    }
+}

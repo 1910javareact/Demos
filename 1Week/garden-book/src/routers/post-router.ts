@@ -2,6 +2,7 @@ import express from 'express'
 import * as pservice from '../services/post-service'
 import { Post } from '../models/post'
 import { Garden } from '../models/garden'
+import { authorization } from '../middleware/auth-middleware'
 
 export const postRouter = express.Router()
 
@@ -14,10 +15,11 @@ postRouter.get('', (req,res)=>{
     }
 })
 
+//we should revise this, so we use the logged in users info for making a post
 postRouter.post('', (req,res)=>{
     let {body} = req
     let {author} = body
-    let newP = new Post('', new Garden('',0,0),0)
+    let newP = new Post('', new Garden('',0,0,'','',[]),0, 0, [])
     for(let key in newP){
         console.log(body[key]);
         
@@ -53,3 +55,16 @@ postRouter.post('', (req,res)=>{
         }
     }
 })
+
+//this is for liking a post
+postRouter.patch('/:id', [authorization(['User']), (req,res)=>{
+    let id = +req.params.id
+    let garden = req.session.user
+    try{
+        let post = pservice.likePost(id, garden)
+        res.json(post)
+    }catch(e){
+        res.status(e.status).send(e.message)
+    }
+    
+}])
