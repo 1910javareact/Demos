@@ -8,4 +8,4 @@ export let gardens = [
     new Garden("Olbrich", 75, 2, 'MadisonRocks', 'password', ['Admin','User']),
 ]
 
-export let posts:Post[] = []
+export let posts:Post[] = [new Post("I love Garden-book", gardens[1], 0, 1, [])]

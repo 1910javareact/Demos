@@ -16,7 +16,7 @@ export function likePost(id:number, garden:Garden){
     for(let i = 0; i < post.gardensWhoLiked.length; i++){
         if(post.gardensWhoLiked[i].id === garden.id){
             post.numLikes--
-            post.gardensWhoLiked.slice(i,i+1)
+            post.gardensWhoLiked.splice(i,1)
             pdao.daoSaveOnePost(post)
             return post
         }
