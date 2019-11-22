@@ -6,7 +6,7 @@ import { daoGetAllGardens, daoSaveOneGarden, daoGetGardenById, daoGetGardenByUse
 //send notifications to other users
 //friend requests
 
-export function getAllGardens():Garden[]{
+export function getAllGardens():Promise<Garden[]>{
     //do some processing
     return daoGetAllGardens()
 }

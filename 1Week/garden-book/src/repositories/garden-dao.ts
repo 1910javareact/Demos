@@ -1,12 +1,32 @@
 import { Garden } from "../models/garden";
 import { gardens } from "../database";
+import { PoolClient } from "pg";
+import { connectionPool } from ".";
 
 //the purpose of this file is to contain functions for interacting with the database
 //we don't have one yet, but when we do, it should be easy to change
 let id = 3//this is a counter for unique garden ids
 
 
-export function daoGetAllGardens():Garden[]{
+export async function daoGetAllGardens():Promise<Garden[]>{
+    let client:PoolClient
+    //this is going to be our connection that we use
+    //we are going to get it asynchronously
+    //because, all our connections, might be in use
+    try{
+        //every time we use the await keyword
+        client = await connectionPool.connect()
+        //we register all code beneath it as a callback function
+        //for when the promise resolves
+        let result = await client.query('SELECT * FROM garden_book.garden')
+        console.log(result.rows)
+        return null
+    }catch(e){
+        console.log(e);
+        
+    }finally{
+        client && client.release()
+    }
     return gardens
 }
 
