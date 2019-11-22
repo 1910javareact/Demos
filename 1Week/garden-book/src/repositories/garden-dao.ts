@@ -2,6 +2,7 @@ import { Garden } from "../models/garden";
 import { gardens } from "../database";
 import { PoolClient } from "pg";
 import { connectionPool } from ".";
+import { multiGardenDTOConvertor } from "../util/Gardendto-to-garden";
 
 //the purpose of this file is to contain functions for interacting with the database
 //we don't have one yet, but when we do, it should be easy to change
@@ -18,16 +19,17 @@ export async function daoGetAllGardens():Promise<Garden[]>{
         client = await connectionPool.connect()
         //we register all code beneath it as a callback function
         //for when the promise resolves
-        let result = await client.query('SELECT * FROM garden_book.garden')
-        console.log(result.rows)
-        return null
+        let result = await client.query('SELECT * FROM garden_book.garden natural join garden_book.garden_roles natural join garden_book.roles')
+        return multiGardenDTOConvertor(result.rows)
     }catch(e){
         console.log(e);
-        
+        throw {
+            status:500,
+            message:'Internal Server Error'
+        }
     }finally{
         client && client.release()
     }
-    return gardens
 }
 
 export function daoSaveOneGarden(g:Garden){

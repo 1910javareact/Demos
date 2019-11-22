@@ -11,14 +11,13 @@ import { authorization } from '../middleware/auth-middleware'
 export const gardenRouter = express.Router()
 
 //an example of not using arrow functions
-function controllerGetGardens(req, res){
-    let gardens = getAllGardens()//this function is in services
-    if(gardens){        //its purpose is to process getting all gardens
+async function controllerGetGardens(req, res){
+    try {
+        let gardens = await getAllGardens()//this function is in services
         res.json(gardens)
-    }else{
-        res.sendStatus(500)
+    }catch(e){
+        res.status(e.status).send(e.message)
     }
-
 }
 //you can only send one response
 //so as soon as a more general endpoint ends a response, the specific ones lose the ability to
@@ -27,7 +26,7 @@ gardenRouter.get('', [ authorization(['Admin']), controllerGetGardens ])
 //this is going to be an endpoint for finding a particular garden
 //generally, I should use a unique id in the uri to pinpoint the garden
 //but how to get that id from the uri?
-gardenRouter.get('/:id', (req,res)=>{
+gardenRouter.get('/:id', async (req,res)=>{
     let id = +req.params.id//from req.params, give me id
     if(isNaN(id)){
         res.sendStatus(400)
