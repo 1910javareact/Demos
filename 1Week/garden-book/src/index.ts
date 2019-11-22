@@ -36,13 +36,13 @@ app.use('/gardens', gardenRouter)
 
 app.use('/posts', postRouter)
 
-app.post('/login', (req,res)=>{
+app.post('/login', async (req,res)=>{
     let {username, password} = req.body
     if(!username || !password ){
         res.status(400).send('please have a username and password field')
     }
     try{
-        let user = getGardenByUsernameAndPassword(username, password)
+        let user = await getGardenByUsernameAndPassword(username, password)
         req.session.user = user
         res.json(user)//its standard to send the logged in user info after the log in
     }catch(e){

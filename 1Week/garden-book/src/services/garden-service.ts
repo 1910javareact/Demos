@@ -26,7 +26,7 @@ export function getGardenById(id:number):Garden{
     return daoGetGardenById(id)
 }
 
-export function getGardenByUsernameAndPassword(username:string, password:string){
+export function getGardenByUsernameAndPassword(username:string, password:string):Promise<Garden>{
     //if this was for real
     //we should be hashing and salting the password here
     //but our api is wildly unsecure, so don't worry about
