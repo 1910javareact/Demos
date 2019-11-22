@@ -20,7 +20,7 @@ export function saveOneGarden(g:Garden):Promise<Garden>{
     return daoSaveOneGarden(g)
 }
 
-export function getGardenById(id:number):Garden{
+export function getGardenById(id:number):Promise<Garden>{
     console.log("Service: you are seraching for garden " + id);
     
     return daoGetGardenById(id)

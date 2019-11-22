@@ -32,7 +32,7 @@ gardenRouter.get('/:id', async (req, res) => {
         res.sendStatus(400)
     } else {
         try {
-            let garden = getGardenById(id)
+            let garden = await getGardenById(id)
             res.json(garden)
         } catch (e) {
             res.status(e.status).send(e.message)
