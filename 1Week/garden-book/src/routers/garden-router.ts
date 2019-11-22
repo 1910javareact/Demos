@@ -11,55 +11,54 @@ import { authorization } from '../middleware/auth-middleware'
 export const gardenRouter = express.Router()
 
 //an example of not using arrow functions
-async function controllerGetGardens(req, res){
+async function controllerGetGardens(req, res) {
     try {
         let gardens = await getAllGardens()//this function is in services
         res.json(gardens)
-    }catch(e){
+    } catch (e) {
         res.status(e.status).send(e.message)
     }
 }
 //you can only send one response
 //so as soon as a more general endpoint ends a response, the specific ones lose the ability to
-gardenRouter.get('', [ authorization(['Admin']), controllerGetGardens ])
+gardenRouter.get('', [authorization(['Admin']), controllerGetGardens])
 
 //this is going to be an endpoint for finding a particular garden
 //generally, I should use a unique id in the uri to pinpoint the garden
 //but how to get that id from the uri?
-gardenRouter.get('/:id', async (req,res)=>{
+gardenRouter.get('/:id', async (req, res) => {
     let id = +req.params.id//from req.params, give me id
-    if(isNaN(id)){
+    if (isNaN(id)) {
         res.sendStatus(400)
-    }else{
-        try{
+    } else {
+        try {
             let garden = getGardenById(id)
             res.json(garden)
-        }catch(e){
+        } catch (e) {
             res.status(e.status).send(e.message)
         }
-        
+
     }
 })
 
 
 //we should revise this and do data checking
-gardenRouter.post('', [ authorization(['Admin','Moderator']),
-    (req,res)=>{
-    let {body} = req//destructuring
-    let newG = new Garden('',0,0, '', '', [])
-    for(let key in newG){
-        console.log(body[key]);
-        
-        if(body[key] === undefined){
+gardenRouter.post('', [authorization(['Admin', 'Moderator']),
+async (req, res) => {
+    let { body } = req//destructuring
+    let newG = new Garden('', 0, 0, '', '', [])
+    for (let key in newG) {
+        if (body[key] === undefined) {
             res.status(400).send('Please include all garden fields')
             break;
-        }else{
+        } else {
             newG[key] = body[key]
         }
     }
-    if(saveOneGarden(newG)){
-        res.sendStatus(201)
-    }else {
-        res.sendStatus(500)
+    try{
+        let garden = await saveOneGarden(newG)
+        res.status(201).json(garden)
+    }catch(e){
+        res.status(e.status).send(e.message)
     }
 }])

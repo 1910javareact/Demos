@@ -16,7 +16,7 @@ export async function getAllGardens():Promise<Garden[]>{
     
 }
 
-export function saveOneGarden(g:Garden){
+export function saveOneGarden(g:Garden):Promise<Garden>{
     return daoSaveOneGarden(g)
 }
 
