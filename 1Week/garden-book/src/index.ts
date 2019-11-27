@@ -37,16 +37,17 @@ app.use('/gardens', gardenRouter);
 app.use('/posts', postRouter);
 
 app.post('/login', async (req, res) => {
-    const {username, password} = req.body;
-    if (!username || !password ) {
+    const { username, password } = req.body;
+    if (!username || !password) {
         res.status(400).send('please have a username and password field');
-    }
-    try {
-        const user = await getGardenByUsernameAndPassword(username, password);
-        req.session.user = user;
-        res.json(user); //its standard to send the logged in user info after the log in
-    } catch (e) {
-        res.status(e.status).send(e.message);
+    } else {
+        try {
+            const user = await getGardenByUsernameAndPassword(username, password);
+            req.session.user = user;
+            res.json(user); //its standard to send the logged in user info after the log in
+        } catch (e) {
+            res.status(e.status).send(e.message);
+        }
     }
 
 
