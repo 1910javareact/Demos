@@ -1,20 +1,20 @@
-##Making an EC2
-###SetUp
+## Making an EC2
+### SetUp
 - log in to console
 - search for ec2 and go to ect dashboard
 - make sure you are in the correct region
 - click the launch instance button
-###EC2 Options
+### EC2 Options
 - check the free tier only checkbox
 - select amazon linux ami 2
 - choose t2 micro for instance type
 - choose to configure instance details
-####Finding your VPC and Subnet of DB
+#### Finding your VPC and Subnet of DB
 - open rds dasboard
 - click on instances
 - look at region & AZ for the subnet
 - look at VPC for vpc
-###EC2 Options continued
+### EC2 Options continued
 - choose same network and subnet as rds
 - all other defaults for configure instance details are correct
 - click add storage
@@ -31,7 +31,7 @@
 - probably you are making a new key pair
 - give it a name, download it and don't lose it
 - click launch instances
-##Managing Ec2
+## Managing Ec2
 - go back to ec2 dashboard
 - click on instances
 - here you can see all info about the instance
