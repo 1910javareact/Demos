@@ -16,3 +16,5 @@
     - https://flexboxfroggy.com/
 - for css grid
     - http://cssgridgarden.com/
+- for basic styling, do at least the CSS tutorial
+    - https://www.w3schools.com/css/default.asp
