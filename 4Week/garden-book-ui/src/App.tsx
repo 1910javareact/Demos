@@ -1,7 +1,8 @@
 import React from 'react';
 import logo from './logo.svg';
 import './App.css';
-import {FirstComponent} from './components/first-component/first-component'
+import {FirstComponent} from './components/first-component/FirstComponent'
+import GBNav from './components/navbar/GardenBookNavBar'
 
 //this is a function component
 const App: React.FC = () => {
@@ -9,6 +10,9 @@ const App: React.FC = () => {
   return (
     //only one root tag is allowed in the jsx we return
     <div className="App">
+      <nav>
+        <GBNav/>
+      </nav>
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
         <p>
