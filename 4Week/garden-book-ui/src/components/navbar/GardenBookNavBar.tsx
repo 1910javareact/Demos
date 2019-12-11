@@ -3,7 +3,6 @@ import {
   Collapse,
   Navbar,
   NavbarToggler,
-  NavbarBrand,
   Nav,
   NavItem,
   NavLink,
@@ -23,9 +22,9 @@ const GardenBookNavBar = (props:any) => {
   return (
     <div>
       <Navbar color="light" light expand="md">
-        <NavbarBrand>
+        <NavItem>
           <Link to='/'>Garden Book</Link>
-        </NavbarBrand>
+        </NavItem>
         <NavbarToggler onClick={toggle} />
         <Collapse isOpen={isOpen} navbar>
           <Nav className="mr-auto" navbar>
