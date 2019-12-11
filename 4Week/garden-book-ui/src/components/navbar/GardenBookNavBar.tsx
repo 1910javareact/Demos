@@ -29,7 +29,7 @@ const GardenBookNavBar = (props:any) => {
         <Collapse isOpen={isOpen} navbar>
           <Nav className="mr-auto" navbar>
             <NavItem>
-              <Link to='/components'>Components</Link>
+              <Link to='/login'>Login</Link>
             </NavItem>
             <NavItem>
               <NavLink href="https://github.com/reactstrap/reactstrap">GitHub</NavLink>

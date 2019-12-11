@@ -5,6 +5,7 @@ import { postRouter } from './routers/post-router';
 import { loggingMiddleware } from './middleware/logging-middleware';
 import { sessionMiddleware } from './middleware/session-middleware';
 import { getGardenByUsernameAndPassword } from './services/garden-service';
+import { corsFilter } from './middleware/cors-middleware';
 
 const app = express(); //this line builds the application from express
 
@@ -26,6 +27,7 @@ app.use(bodyparser.json());
 //its having GBs of info about what people are doing
 app.use(loggingMiddleware);
 
+app.use(corsFilter);
 //this is going to add to every req object
 //an object called session
 //we can access using req.session
