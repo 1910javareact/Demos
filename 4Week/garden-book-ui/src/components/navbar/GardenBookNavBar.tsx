@@ -34,18 +34,18 @@ const GardenBookNavBar = (props:any) => {
             </NavItem>
             <UncontrolledDropdown nav inNavbar>
               <DropdownToggle nav caret>
-                Options
+                Pages
               </DropdownToggle>
               <DropdownMenu right>
                 <DropdownItem>
-                  Option 1
+                  ChuckNorrisJoke
                 </DropdownItem>
                 <DropdownItem>
-                  Option 2
+                  Clicker
                 </DropdownItem>
                 <DropdownItem divider />
                 <DropdownItem>
-                  Reset
+                  Tic-Tac-Toe
                 </DropdownItem>
               </DropdownMenu>
             </UncontrolledDropdown>
