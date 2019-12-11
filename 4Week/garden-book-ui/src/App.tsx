@@ -1,9 +1,10 @@
 import React from 'react';
 //import logo from './logo.svg';
 import './App.css';
-import {FirstComponent} from './components/first-component/FirstComponent'
 import GBNav from './components/navbar/GardenBookNavBar'
 import { ChuckNorrisComponent } from './components/chuck-norris-component/ChuckNorrisComponent';
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import { Home } from './components/home/Home';
 
 //this is a function component
 const App: React.FC = () => {
@@ -11,17 +12,26 @@ const App: React.FC = () => {
   return (
     //only one root tag is allowed in the jsx we return
     <div className="App">
-      <nav>
-        <GBNav/>
-      </nav>
-      <header>
-        <ChuckNorrisComponent/>
-      </header>
-      <FirstComponent/>
-      <FirstComponent/>
-      <FirstComponent/>
+      <Router>
+        <nav>
+          <GBNav />
+        </nav>
+        {/* the switch is for matching single paths to the url
+        it loads exactly one thing in the switch */}
+        <Switch>
+
+          <Route path='/chucknorris'>
+            <header>
+              <ChuckNorrisComponent />
+            </header>
+          </Route>
+          <Route path='/'>
+            <Home />
+          </Route>
+        </Switch>
+      </Router>
     </div>
-    
+
   );
 }
 
