@@ -13,6 +13,7 @@ import {
   DropdownItem,
   NavbarText
 } from 'reactstrap';
+import { Link } from 'react-router-dom';
 
 const GardenBookNavBar = (props:any) => {
   const [isOpen, setIsOpen] = useState(false);//this is a hook
@@ -22,12 +23,14 @@ const GardenBookNavBar = (props:any) => {
   return (
     <div>
       <Navbar color="light" light expand="md">
-        <NavbarBrand href="/">reactstrap</NavbarBrand>
+        <NavbarBrand>
+          <Link to='/'>Garden Book</Link>
+        </NavbarBrand>
         <NavbarToggler onClick={toggle} />
         <Collapse isOpen={isOpen} navbar>
           <Nav className="mr-auto" navbar>
             <NavItem>
-              <NavLink href="/components/">Components</NavLink>
+              <Link to='/components'>Components</Link>
             </NavItem>
             <NavItem>
               <NavLink href="https://github.com/reactstrap/reactstrap">GitHub</NavLink>
@@ -38,14 +41,14 @@ const GardenBookNavBar = (props:any) => {
               </DropdownToggle>
               <DropdownMenu right>
                 <DropdownItem>
-                  ChuckNorrisJoke
+                  <Link to='/chucknorris'>ChuckNorrisJoke</Link>
                 </DropdownItem>
                 <DropdownItem>
-                  Clicker
+                  <Link to='/clicker'>Clicker</Link>
                 </DropdownItem>
                 <DropdownItem divider />
                 <DropdownItem>
-                  Tic-Tac-Toe
+                  <Link to='/tictactoe'>Tic-Tac-Toe</Link>
                 </DropdownItem>
               </DropdownMenu>
             </UncontrolledDropdown>

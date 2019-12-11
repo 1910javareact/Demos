@@ -5,6 +5,7 @@ import GBNav from './components/navbar/GardenBookNavBar'
 import { ChuckNorrisComponent } from './components/chuck-norris-component/ChuckNorrisComponent';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import { Home } from './components/home/Home';
+import CookieClicker from './components/clicker-component/CookieClicker';
 
 //this is a function component
 const App: React.FC = () => {
@@ -19,7 +20,7 @@ const App: React.FC = () => {
         {/* the switch is for matching single paths to the url
         it loads exactly one thing in the switch */}
         <Switch>
-
+          <Route path ='/clicker' component={CookieClicker}/>
           <Route path='/chucknorris'>
             <header>
               <ChuckNorrisComponent />
