@@ -12,6 +12,8 @@ interface IAutoCookieMakerProps{
 
 //a pure component, is one that does not have any state
 //it takes all of its required info in as props
+
+//this is the dumb component
 export class AutoCookieMaker extends React.PureComponent<IAutoCookieMakerProps>{
 
     componentDidMount(){

@@ -26,18 +26,7 @@ export class CookieClicker extends React.Component<any, ICookieClickerState>{
             numSubmarines: 0,
             numTrees: 0
         }
-        this.generators = [<AutoCookieMaker
-            name='Grandma'
-            interval={500}
-            itemCount={this.state.numGrandmas}
-            // this is an advanced manuever
-            // we are making an anon function, that calls a named function
-            //it calls that function with particular inputs
-            buyFunction={() => { this.buyAutoMaker(100, 'Grandma') }}
-            generateCookies={() => { this.autoGenerateCookies(this.state.numGrandmas, 5) }}
-        />]
     }
-    generators: any[]
     cookieClick = () => {
         this.setState({
             ...this.state,
@@ -83,9 +72,31 @@ export class CookieClicker extends React.Component<any, ICookieClickerState>{
         })
     }
 
-
+    buyAFarm=()=>{
+        this.buyAutoMaker(500, 'Farm')
+    }
+    farmGenerate=()=>{
+        this.autoGenerateCookies(this.state.numFarms, 25)
+    }
 
     render() {
+        let generators = [<AutoCookieMaker
+            name='Grandma'
+            interval={500}
+            itemCount={this.state.numGrandmas}
+            // this is an advanced manuever
+            // we are making an anon function, that calls a named function
+            //it calls that function with particular inputs
+            buyFunction={() => { this.buyAutoMaker(100, 'Grandma') }}
+            generateCookies={() => { this.autoGenerateCookies(this.state.numGrandmas, 5) }}
+        />,
+        <AutoCookieMaker
+        name='Farm'
+        interval={1000}
+        itemCount={this.state.numFarms}
+        buyFunction={this.buyAFarm}
+        generateCookies={this.farmGenerate}
+        />]
 
         return (
             <div>
@@ -98,7 +109,7 @@ export class CookieClicker extends React.Component<any, ICookieClickerState>{
                     <p>Number of Clicks: {this.state.numClicks}</p>
                 </div>
                 <div>
-                    {this.generators}
+                    {generators}
                 </div>
                 <Prompt when={this.state.numClicks > 0} message='Are you sure you want to give up your cookies?' />
             </div>
