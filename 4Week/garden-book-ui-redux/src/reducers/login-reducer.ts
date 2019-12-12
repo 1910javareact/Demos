@@ -1,6 +1,6 @@
 import { ILoginState } from "."
 import { Garden } from "../models/garden"
-import { Action } from 'redux'
+import { gbLoginTypes } from "../action-mappers/login-action-mappers"
 
 //the reducer is the only thing allowed to change values in state
 //so we pass in state, and the action to update state
@@ -16,9 +16,19 @@ const initialState: ILoginState = {
 }
 
 
-
-export const loginReducer = (state = initialState, action: Action) => {
+//whatever this reducer returns, becomes the total state of the store
+//do not forget to spread state
+export const loginReducer = (state = initialState, action:any) => {
+    
     switch (action.type) {
+        case gbLoginTypes.SUCCESSFUL_LOGIN:{
+            //we return the new total state
+            //dont forget to spread
+            return {
+                ...state,
+                user:action.payload.user
+            }
+        }
         default:
             return state
     }

@@ -18,10 +18,19 @@ export async function gardenBookLogin(username:string, password:string){
             }
         })
         console.log(response);
-        return await response.json()
+        if(response.status === 200){
+            return {
+                status: response.status,
+                body: await response.json()}
+        }else {
+            return{
+                status:response.status,
+                body:undefined
+            }
+        }
     }catch(e){
         console.log(e);
-        
+        throw new Error('Something went wrong')
     }
 
 

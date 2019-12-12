@@ -1,8 +1,17 @@
 import React, { SyntheticEvent } from 'react'
 import { Form, FormGroup, Label, Input, Button } from 'reactstrap'
-import { gardenBookLogin } from '../../remote/garden-book-clients/garden-book-user'
+//import { gardenBookLogin } from '../../remote/garden-book-clients/garden-book-user'
+import { Garden } from '../../models/garden'
 
-export class LoginComponent extends React.Component<any, any>{
+//we need to pass in
+interface ILoginComponentProps{
+    user:Garden
+    gbLogin:(u:string,p:string)=>void
+}
+
+
+
+export class LoginComponent extends React.Component<ILoginComponentProps, any>{
     constructor(props: any) {
         super(props)
         this.state = {
@@ -25,11 +34,7 @@ export class LoginComponent extends React.Component<any, any>{
 
     submitLogin = async (e:SyntheticEvent) => {
         e.preventDefault()
-        let user = await gardenBookLogin(this.state.username, this.state.password);
-        this.setState({
-            ...this.state,
-            user:user
-        })
+        this.props.gbLogin(this.state.username, this.state.password)
     }
 
     render() {
@@ -46,6 +51,7 @@ export class LoginComponent extends React.Component<any, any>{
                     </FormGroup>
                     <Button color='danger'>Submit</Button>
                 </Form>
+                <p>{this.props.user.name}</p>
             </div>
         )
     }
