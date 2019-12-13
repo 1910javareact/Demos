@@ -49,6 +49,9 @@ const GardenBookNavBar = (props:any) => {
                 <DropdownItem>
                   <Link to='/tictactoe'>Tic-Tac-Toe</Link>
                 </DropdownItem>
+                <DropdownItem>
+                  <Link to='/gardens/display'>Garden Table</Link>
+                </DropdownItem>
               </DropdownMenu>
             </UncontrolledDropdown>
           </Nav>
