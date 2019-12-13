@@ -1,10 +1,11 @@
 import React from 'react'
-import { Table } from 'reactstrap'
+import { Table, Button } from 'reactstrap'
 import { ITicTacToeState } from '../../reducers';
 
 interface ITicTacToeProps{
     tictactoe:ITicTacToeState
     ticTacToeCellClick:(x:number, y:number)=>void
+    newTicTacToeGame:()=>void
 }
 
 export class TicTacToeComponent extends React.Component<ITicTacToeProps,any>{
@@ -40,6 +41,7 @@ export class TicTacToeComponent extends React.Component<ITicTacToeProps,any>{
                     </tr>
                 </tbody>
                 </Table>
+                <Button onClick={this.props.newTicTacToeGame}disabled={this.props.tictactoe.playable}>New Game!</Button>
             </div>
         )
     }

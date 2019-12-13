@@ -1,7 +1,7 @@
 import { IState } from "../../reducers";
 import { connect } from "react-redux";
 import { TicTacToeComponent } from "./TicTacToeComponent";
-import {ticTacToeCellClick} from "../../action-mappers/tic-tac-toe-action-mapper"
+import {ticTacToeCellClick, newTicTacToeGame} from "../../action-mappers/tic-tac-toe-action-mapper"
 
 
 
@@ -15,7 +15,8 @@ const mapStateToProps = (state: IState) => {
 
 const mapDispatchToProps = {
     //we put function names here
-    ticTacToeCellClick
+    ticTacToeCellClick,
+    newTicTacToeGame
 }
 
 export default connect(mapStateToProps,mapDispatchToProps)(TicTacToeComponent)

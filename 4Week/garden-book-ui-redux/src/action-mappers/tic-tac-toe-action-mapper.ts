@@ -1,5 +1,6 @@
 export const ticTacToeTypes = {
-    CELL_CLICK: 'TICTACTOE_CELL_CLICK'
+    CELL_CLICK: 'TICTACTOE_CELL_CLICK',
+    RESET_GAME:'TICTACTOE_RESET_GAME'
 }
 
 
@@ -12,5 +13,11 @@ export const ticTacToeCellClick = (x:number, y:number)=> {
             x,
             y
         }
+    }
+}
+
+export const newTicTacToeGame =()=>{
+    return {
+        type:ticTacToeTypes.RESET_GAME
     }
 }

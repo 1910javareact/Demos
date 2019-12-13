@@ -19,6 +19,7 @@ export interface ITicTacToeState{
     xsTurn:boolean
     xWins:number
     oWins:number
+    playable:boolean//true for in progress
 }
 //will be the typing of our entire global state
 export interface IState{
