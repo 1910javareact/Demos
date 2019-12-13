@@ -17,36 +17,44 @@ export const tictactoeReducer = (state = initialState, action: any) => {
     switch (action.type) {
         case ticTacToeTypes.CELL_CLICK: {
             if (state.playable) {
-                let newBoard = [...state.board]
-                newBoard[0] = [...state.board[0]]
-                newBoard[1] = [...state.board[1]]
-                newBoard[2] = [...state.board[2]]
-                let cell = newBoard[action.payload.x][action.payload.y]
+                let cell = state.board[action.payload.x][action.payload.y]
                 if (cell !== ' ') {
                     return state
-                } else {
-                    if (state.xsTurn) {
-                        newBoard[action.payload.x][action.payload.y] = 'X'
+                }
+                //get new board with cell filled
+                let newBoard = makeBoard(action.payload.x, action.payload.y, state)
+                // see if there is a winner
+                let winner = checkWinner(newBoard)
+                if (winner) {
+                    //winner is player x
+                    if (winner === 'X') {
+                        return {
+                            ...state,
+                            board: newBoard,
+                            xWins: state.xWins + 1,
+                            playable:false
+                        }
+                        //winner is player o
                     } else {
-                        newBoard[action.payload.x][action.payload.y] = 'O'
+                        return {
+                            ...state,
+                            board: newBoard,
+                            oWins: state.oWins + 1,
+                            playable:false
+                        }
                     }
-                    let winner = checkWinner(newBoard)
-                    if (winner) {
-                        if (winner === 'X') {
-                            return {
-                                ...state,
-                                board: newBoard,
-                                xWins: state.xWins + 1
-                            }
-                        } else {
-                            return {
-                                ...state,
-                                board: newBoard,
-                                oWins: state.oWins + 1
-                            }
+
+                } else {
+                    //look for tie
+                    if(checkFull(newBoard)){
+                        return{
+                            ...state,
+                            board:newBoard,
+                            playable:false
                         }
 
-                    } else {
+                    }else {
+                        // move forward one turn
                         return {
                             ...state,
                             board: newBoard,
@@ -54,22 +62,38 @@ export const tictactoeReducer = (state = initialState, action: any) => {
                         }
                     }
                 }
-            }else {
+                //game is not playable
+            } else {
                 return state
             }
-        } 
-        case ticTacToeTypes.RESET_GAME:{
-            return{
+        }
+        case ticTacToeTypes.RESET_GAME: {
+            return {
                 ...state,
-                board:initialState.board,
-                xsTurn:true,
-                playable:true
+                board: initialState.board,
+                xsTurn: true,
+                playable: true
             }
         }
         default:
             return state
     }
 
+}
+
+
+function makeBoard(x: number, y: number, state: any) {
+    let newBoard = [...state.board]
+    newBoard[0] = [...state.board[0]]
+    newBoard[1] = [...state.board[1]]
+    newBoard[2] = [...state.board[2]]
+
+    if (state.xsTurn) {
+        newBoard[x][y] = 'X'
+    } else {
+        newBoard[x][y] = 'O'
+    }
+    return newBoard
 }
 
 
@@ -96,4 +120,15 @@ const checkWinner = (board: string[][]) => {
     }
 
     return res
+}
+
+function checkFull(board:string[][]){
+    for(const row of board){
+        for(const cell of row){
+            if(cell === ' '){
+                return false
+            }
+        }
+    }
+    return true
 }
