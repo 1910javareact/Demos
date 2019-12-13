@@ -9,6 +9,7 @@ import CookieClicker from './components/clicker-component/CookieClicker';
 import  LoginComponent  from './components/login-component/LoginContainer';
 import { Provider } from 'react-redux';
 import { store } from './Store';
+import  TicTacToeComponent  from './components/tic-tac-toe-component/TicTacToeContainer';
 
 //this is a function component
 const App: React.FC = () => {
@@ -31,6 +32,7 @@ const App: React.FC = () => {
                 <ChuckNorrisComponent />
               </header>
             </Route>
+            <Route path='/tictactoe' component={TicTacToeComponent}/>
             <Route path='/'>
               <Home />
             </Route>
