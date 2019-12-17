@@ -1,0 +1,16 @@
+version: 0.2
+
+phases:
+    install:
+        runtime-versions:
+            nodejs: 8
+        commands: 
+            - cd 4Week/garden-book-ui-redux
+            - npm install
+    build:
+        commands:
+            - npm run build
+artifacts:
+    files:
+        - '**/*'
+    base-directory: '4Week/garden-book-ui-redux/build'
