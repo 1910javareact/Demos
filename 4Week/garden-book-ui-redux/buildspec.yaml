@@ -1,5 +1,9 @@
 version: 0.2
 
+env:
+    variables:
+        REACT_APP_ENV: "prod"
+
 phases:
     install:
         runtime-versions:
