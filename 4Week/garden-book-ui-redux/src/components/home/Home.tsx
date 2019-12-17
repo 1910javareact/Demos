@@ -6,21 +6,10 @@ import { gardenBookLogin } from '../../remote/garden-book-clients/garden-book-us
 export class Home extends React.Component<any, any>{
     constructor(props:any){
         super(props)
-        this.state={
-            garden:{}
-        }
     }
 
-    async componentDidMount(){
-        let garden = await gardenBookLogin('MadisonRocks', 'password')
-        this.setState({
-            ...this.state,
-            garden
-        })
-    }
 
     render() {
-        console.log(this.state.garden);
         
         return (
             // we have a special tag in react that isn't a real element
