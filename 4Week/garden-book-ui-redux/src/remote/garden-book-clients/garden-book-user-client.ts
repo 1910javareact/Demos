@@ -1,8 +1,9 @@
 import axios from 'axios'
+import { environment } from '../../environment'
 
 
 export const gbUserClient = axios.create({
-    baseURL: 'http://localhost:1001', //generally just network address
+    baseURL: environment.baseUrl, //generally just network address
     headers:{
         'Content-Type':'application/json'
     },
