@@ -106,7 +106,7 @@ const checkWinner = (board: string[][]) => {
             res = row[0]
         }
     }
-    res ? res = res : res = board[0].reduce((total, cell, index) => {
+    res ? true : res = board[0].reduce((total, cell, index) => {
         if ((cell === board[1][index]) && (cell === board[2][index]) && cell !== ' ') {
             return total + cell
         } else {
