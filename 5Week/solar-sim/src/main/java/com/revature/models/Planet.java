@@ -56,8 +56,10 @@ public class Planet extends CelestialBody {
 
 	@Override
 	public String toString() {
-		return "Planet [name=" + name + "]";
+		return super.toString() + " Planet [name=" + name + "]";
 	}
+
+	
 	
 	
 	

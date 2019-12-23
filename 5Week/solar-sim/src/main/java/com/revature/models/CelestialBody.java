@@ -4,7 +4,7 @@ package com.revature.models;
 
 import com.revature.datastructures.TwoDimensionalTuple;
 
-public abstract class CelestialBody implements Orbitable{
+public abstract class CelestialBody implements Orbitable, Comparable<CelestialBody>{
 
 	private long mass;
 	
@@ -52,6 +52,18 @@ public abstract class CelestialBody implements Orbitable{
 		}
 		return res;
 	}
+	
+	
+	public int compareTo(CelestialBody c) {
+		if(this.mass < c.mass) {
+			return -1;
+		}else if(c.mass < this.mass) {
+			return 1;
+		}else {
+			return 0;
+		}
+	}
+	
 
 	public CelestialBody() {
 		super();
