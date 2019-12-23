@@ -106,13 +106,15 @@ const checkWinner = (board: string[][]) => {
             res = row[0]
         }
     }
-    res ? true : res = board[0].reduce((total, cell, index) => {
-        if ((cell === board[1][index]) && (cell === board[2][index]) && cell !== ' ') {
-            return total + cell
-        } else {
-            return total + ''
-        }
-    }, '')
+    if(!res){
+        res = board[0].reduce((total, cell, index) => {
+            if ((cell === board[1][index]) && (cell === board[2][index]) && cell !== ' ') {
+                return total + cell
+            } else {
+                return total + ''
+            }
+        }, '')
+    } 
     if (((board[0][0] === board[1][1] && board[0][0] === board[2][2])
         || (board[2][0] === board[1][1] && board[2][0] === board[0][2]))
         && board[1][1] !== ' ') {
