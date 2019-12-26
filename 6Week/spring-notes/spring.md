@@ -69,3 +69,12 @@
   - @Service - this does the same thing as component, more specific typing
   - @Controller - this make the class a bean, and also tells spring to use this class for calling endpoint methods
   - @RestController - like controller but with a little more specific functionality, it intrinsicially puts @responsebody on every endpoint method.
+# Spring Boot
+- Opionated Configuration of Spring
+- Many people used spring, the discovered they were configuring many things the same way consistantly 
+- Convention over Configuration
+- Always going to use application context
+- never going to use xml config, always annotations or java(special methods to do config stuff)
+- embedded tomcat server(tomcat is a web container, and its the most popular)
+- classpath for configuration, if its on the classpath, it will set it up.
+- for any config you do have to do, use yaml
