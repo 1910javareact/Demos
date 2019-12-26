@@ -1,1 +1,17 @@
 # Spring
+- Java Framework, manage and facilitate the building of enterprise level applications through Inversion of Control achieved with dependency injection.
+- Inversion of Control - give up control over making our own objects ( controllers, daos, service layers) we are going to let spring make them.
+- Dependency Injection - Spring will take our dependencies, that it already manages and link them together in a process called wiring.
+  - Dependency - Some object B that and object A needs to work. 
+- Spring makes our controller object A, it also makes our service object B. Object A needs an object B for it to run. Spring through a process called wiring can give its object B to and its object A.
+- We configure spring and all of the objects it manages in an xml file. beans.xml
+- The objects we let spring manage are called spring beans.
+- Benefits of IoC
+  - Seperate concerns. 
+  - Loosely Coupled Code. (Use ineterfaces to define the behaviour of our spring beans)
+  - Code reusability/ avoid code duplication. 
+  - Rely on interfaces/contracts/behaviour instead of the implementation. 
+- Downsides of IoC
+  - Introduce complexity. (It makes it harder for us to think about the problems)
+  - Errors, are much harder to trace. Because spring is incharge of making and executing our objects and that requires a ton of object that make up spring. This means stack traces can be hundreds of lines long.
+  - We don't have control. You will lose some control you used to have. Most of the time, thats fine, but sometimes it can be a challenge.
