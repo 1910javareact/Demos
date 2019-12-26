@@ -47,3 +47,19 @@
     - *when closing the bean
     - DisposableBeans(Interface): destroy()
     - custom destroy method @predestroy annotation
+- Dependency Injection
+    - way for spring to take one object and give to another
+    - 3 ways to do this in spring
+    - Constructor injection, we pass the dependency in as a param of the constructor and then set some private field to that param
+    - Setter injection, we are going to make a setter method and pass in the dependency using that method to set some private field
+    - Field injection, spring can place the dependency directly into a private field
+    - Interface injection, spring can't do it
+    - we shouldn't use this one, field injection, it makes it almost impossible to test. 
+    - By convention, constructor is used for required things, setter is used for optional dependencies and field shouldn't be used.
+- Wiring
+  - the process of connecting to beans to each other.
+  - traditionally done in your beans.xml use the beans tags to set up the DI relationship
+  - Autowiring, is allowing spring to determine the relationships based on the types of dependencies required.
+  - we don't have to use xml, we can use annotations specifically the @AutoWired annotation
+  - if their are multiple beans that fit the type, spring will give you an error. 
+  - @AutoWired - tells spring to automagically connect our beans. - using reflections
