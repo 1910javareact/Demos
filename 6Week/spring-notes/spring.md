@@ -63,3 +63,9 @@
   - we don't have to use xml, we can use annotations specifically the @AutoWired annotation
   - if their are multiple beans that fit the type, spring will give you an error. 
   - @AutoWired - tells spring to automagically connect our beans. - using reflections
+- Sterotype Annotations
+  - @Component - generic annotation telling spring, this is a bean
+  - @Repository - this does the same thing as component, but it has a different type so other more specific code can target it.
+  - @Service - this does the same thing as component, more specific typing
+  - @Controller - this make the class a bean, and also tells spring to use this class for calling endpoint methods
+  - @RestController - like controller but with a little more specific functionality, it intrinsicially puts @responsebody on every endpoint method.
