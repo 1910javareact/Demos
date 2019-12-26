@@ -15,3 +15,35 @@
   - Introduce complexity. (It makes it harder for us to think about the problems)
   - Errors, are much harder to trace. Because spring is incharge of making and executing our objects and that requires a ton of object that make up spring. This means stack traces can be hundreds of lines long.
   - We don't have control. You will lose some control you used to have. Most of the time, thats fine, but sometimes it can be a challenge.
+- IoC container: 
+  - holds all the beans, this is going to be an object that is the root of the Spring applicaiton, will contain and manage the lifecycle of all the beans
+  - There are two core interfaces for the IoC container:
+  - BeanFactory: 
+    - the original interface that has virtually only one core function, 
+    - it will lazily make all beans regardless of their type
+  - ApplicationContext: extends BeanFactory, 
+    - newer version, recommended, 
+    - it can eagerly instantiate singleton beans, 
+    - has automatic bean post processor registration(Don't worry about this too much), 
+    - has I18N support Internationalization(18 letters between I and N), support for translations and different regulations
+- Spring bean: 
+  - objects set up in our xml file for Spring to manage, 
+  - they have different scopes and have their own lifecycle with lifecycle hook methods to interact with them
+  - Scopes of a Spring bean: Spring core has 2 by default, SpringWeb has another 3
+    - Singleton(default): make one single instance of this bean, ever
+    - Prototype: make a new copy of this bean everytime it is needed
+    - Request: make a new bean on every http request
+    - Session: make a new bean for every http session
+    - Global session: it deals with portlets(so don't worry about it)
+  - Lifecycle of a Spring bean:
+    - Instantiation: making the bean
+    - Populate Properties: fill up fields with correct objects
+    - set Aware functions: setBeanName, setBeanFactory etc.
+    - Pre-initailization bean post processor(object): has a method called beanInitialization()
+    - Initializing beans(Interface): after propertiesSet()
+    - Custom Init method @PostConstruct
+    - Bean Post Processor(object): afterInitialization()
+    - Bean is finally reafy to use
+    - *when closing the bean
+    - DisposableBeans(Interface): destroy()
+    - custom destroy method @predestroy annotation
