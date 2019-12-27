@@ -1,16 +1,21 @@
 package com.revature.models;
 
+import java.util.Set;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonFilter;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Table(name = "caves", schema = "bears_schema")
 @Entity
+@JsonFilter("depth_2")
 @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class Cave {
 
@@ -21,6 +26,9 @@ public class Cave {
 	
 	@Column(name = "cave_type")
 	private String type;
+	
+	@OneToMany(mappedBy = "cave")
+	private Set<Bear> inhabitants;
 
 	public Cave() {
 		super();
@@ -43,15 +51,24 @@ public class Cave {
 		this.type = type;
 	}
 
-	public Cave(int id, String type) {
+	public Set<Bear> getInhabitants() {
+		return inhabitants;
+	}
+
+	public void setInhabitants(Set<Bear> inhabitants) {
+		this.inhabitants = inhabitants;
+	}
+
+	public Cave(int id, String type, Set<Bear> inhabitants) {
 		super();
 		this.id = id;
 		this.type = type;
+		this.inhabitants = inhabitants;
 	}
 
 	@Override
 	public String toString() {
-		return "Cave [id=" + id + ", type=" + type + "]";
+		return "Cave [id=" + id + ", type=" + type + ", inhabitants=" + inhabitants + "]";
 	}
 
 	@Override
@@ -59,6 +76,7 @@ public class Cave {
 		final int prime = 31;
 		int result = 1;
 		result = prime * result + id;
+		result = prime * result + ((inhabitants == null) ? 0 : inhabitants.hashCode());
 		result = prime * result + ((type == null) ? 0 : type.hashCode());
 		return result;
 	}
@@ -74,6 +92,11 @@ public class Cave {
 		Cave other = (Cave) obj;
 		if (id != other.id)
 			return false;
+		if (inhabitants == null) {
+			if (other.inhabitants != null)
+				return false;
+		} else if (!inhabitants.equals(other.inhabitants))
+			return false;
 		if (type == null) {
 			if (other.type != null)
 				return false;
@@ -81,8 +104,6 @@ public class Cave {
 			return false;
 		return true;
 	}
-	
-	
-	
+
 	
 }
