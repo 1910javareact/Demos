@@ -1,12 +1,12 @@
-package com.revature.services;
+package com.revature.repositories;
 
 import java.util.List;
 
 import com.revature.models.Bear;
 
-public interface BearService {
+public interface BearDao {
 
-	public List<Bear> getAllBears();
+	public List<Bear> findAllBears();
 
 	public Bear findBearById(int id);
 

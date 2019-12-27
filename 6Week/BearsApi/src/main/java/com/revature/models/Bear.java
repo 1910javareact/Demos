@@ -10,8 +10,11 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 @Table(name = "bears", schema = "bears_schema")
 @Entity//hibernate, manage this
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})//when writing this object into json, if you find a proxy ignore it
 public class Bear {
 	
 	@Id//this is the primary key
@@ -25,7 +28,7 @@ public class Bear {
 	@Column(name = "bear_name")
 	private String name;
 	
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "cave", referencedColumnName = "cave_id")
 	private Cave cave;
 
