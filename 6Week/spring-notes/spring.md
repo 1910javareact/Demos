@@ -78,3 +78,33 @@
 - embedded tomcat server(tomcat is a web container, and its the most popular)
 - classpath for configuration, if its on the classpath, it will set it up.
 - for any config you do have to do, use yaml
+# Spring MVC
+- JEE Architecture (Java enterprise edition)
+  - Sevlets
+    - Object that is made to recieve an http request object and to return an http response object
+    - it gets that request object from a web container and returns the response to the web container
+    - The web container is a special designed to parse http reqs into objects and objects into responses
+    - The web container we will use, that spring boots uses is Tomcat
+    - generally tie servlets to an http endpoint /bears /users/id
+    - in servlets we also have the front controller pattern
+    - in this case, there is only one kind of servlet, and that servlet basiaclly has a massive switch statement for all the possible the endpoints
+    - and then in each case it calls an appropriate method on a controller object to build the response
+- Spring MVC uses the front controller pattern.
+  - it dispatches all requests to one servlet. (50 different threads, all with that same servlet)
+  - That servlet then looks at a special spring managed handler mapping (table) to determine what method to run
+  - go back to servlet and the servlet know correct method to call
+  - then controller method, service method, dao method, return to service, return to controller
+  - then controller returns to servlet a model and view
+  - then servlet will use the view from controller and go to the view resolver, which will then build the view
+  - then the servlet can grab the view and return it with the model
+  - When following Rest standards, we don't return a view, just a model, so then the dispatcher servlet can skip the view resolving steps 
+- Spring MVC Annotations
+  - @Controller
+  - @RestController - puts @ResponseBody above every method
+  - @RequestMapping - this is going to allow us to match paths to methods, spring uses these annotations to build the handler mapping table
+  - @GetMapping @PostMapping @PutMapping @PatchMapping @DeleteMapping
+  - @RequestBody - the request will have a body it needs to be passed in and parsed
+  - @ResponseBody - there is no view, the response is just the object returned
+  - @PathVariable - to get a variable from the path,  /users/:id
+  - @RequestParam - to get anything in path marked by question mark /user?name=Sam
+  
