@@ -120,3 +120,16 @@
   - we can write custom queries in this interface, using the @query annotation and then providing hql
   - the method names in the interface, can also auto generate queries
   - We do not have to implement the interface to get a working dao...
+  - FUNCTIONS WE GET
+    - getOne(id) 
+    - findById(Id) returns an Optional special object that is null or success
+    - findAll()
+    - save(T obj)//new and update
+    - delete(T obj)
+    - flush() make the cache update the database
+  - FUNCTIONS WE CAN MAKE
+    - make functions by the method name
+      - findByUsernameAndPassword(String username, string password)
+    - we can use @Query with HQL
+      - @Query("FROM Users WHERE name = :name")
+      - use sql with @Query("sql string", nativeQuery = true)
