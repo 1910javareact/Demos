@@ -14,8 +14,8 @@ import org.springframework.stereotype.Repository;
 
 import com.revature.models.Bear;
 
-@Repository
-public class BearDaoImpl implements BearDao {
+//@Repository I AM NO LONGER USING THIS IMPL
+public class BearDaoImpl  {
 
 	private SessionFactory sf;
 	

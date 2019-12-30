@@ -1,5 +1,6 @@
 package com.revature.models;
 
+import java.util.List;
 import java.util.Set;
 
 import javax.persistence.Column;
@@ -19,8 +20,8 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Table(name = "bears", schema = "bears_schema")
 @Entity//hibernate, manage this
-@JsonFilter("depth_2")
 @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})//when writing this object into json, if you find a proxy ignore it
+@JsonFilter("depth_4")
 public class Bear {
 	
 	@Id//this is the primary key
@@ -43,14 +44,14 @@ public class Bear {
 	schema = "bears_schema",
 	joinColumns = @JoinColumn(name = "parent_id", referencedColumnName = "bear_id"),
 	inverseJoinColumns = @JoinColumn(name = "cub_id", referencedColumnName = "bear_id"))
-	private Set<Bear> cubs;
+	private List<Bear> cubs;
 
 	public Bear() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 
-	public Bear(int bearId, String type, String name, Cave cave, Set<Bear> cubs) {
+	public Bear(int bearId, String type, String name, Cave cave, List<Bear> cubs) {
 		super();
 		this.bearId = bearId;
 		this.type = type;
@@ -91,11 +92,11 @@ public class Bear {
 		this.cave = cave;
 	}
 
-	public Set<Bear> getCubs() {
+	public List<Bear> getCubs() {
 		return cubs;
 	}
 
-	public void setCubs(Set<Bear> cubs) {
+	public void setCubs(List<Bear> cubs) {
 		this.cubs = cubs;
 	}
 
@@ -150,7 +151,6 @@ public class Bear {
 			return false;
 		return true;
 	}
-	
 
-		
+	
 }

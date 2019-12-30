@@ -2,6 +2,8 @@ package com.revature.services;
 
 import java.util.List;
 
+import javax.transaction.Transactional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -21,19 +23,20 @@ public class BearServiceImpl implements BearService{
 	@Override
 	public List<Bear> getAllBears() {
 		// TODO Auto-generated method stub
-		return bd.findAllBears();
+		return bd.findAll();
 	}
 
 	@Override
 	public Bear findBearById(int id) {
 		// TODO Auto-generated method stub
-		return bd.findBearById(id);
+		return bd.getOne(id);
 	}
 
 	@Override
+	@Transactional//everything inside of this method, is in one transaction
 	public Bear saveOneBear(Bear b) {
 		// TODO Auto-generated method stub
-		return bd.saveOneBear(b);
+		return bd.save(b);
 	}
 
 }

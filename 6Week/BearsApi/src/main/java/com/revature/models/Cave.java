@@ -1,5 +1,6 @@
 package com.revature.models;
 
+import java.util.List;
 import java.util.Set;
 
 import javax.persistence.Column;
@@ -15,7 +16,7 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Table(name = "caves", schema = "bears_schema")
 @Entity
-@JsonFilter("depth_2")
+@JsonFilter("depth_4")
 @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class Cave {
 
@@ -28,7 +29,14 @@ public class Cave {
 	private String type;
 	
 	@OneToMany(mappedBy = "cave")
-	private Set<Bear> inhabitants;
+	private List<Bear> inhabitants;
+
+	public Cave(int id, String type, List<Bear> inhabitants) {
+		super();
+		this.id = id;
+		this.type = type;
+		this.inhabitants = inhabitants;
+	}
 
 	public Cave() {
 		super();
@@ -51,18 +59,11 @@ public class Cave {
 		this.type = type;
 	}
 
-	public Set<Bear> getInhabitants() {
+	public List<Bear> getInhabitants() {
 		return inhabitants;
 	}
 
-	public void setInhabitants(Set<Bear> inhabitants) {
-		this.inhabitants = inhabitants;
-	}
-
-	public Cave(int id, String type, Set<Bear> inhabitants) {
-		super();
-		this.id = id;
-		this.type = type;
+	public void setInhabitants(List<Bear> inhabitants) {
 		this.inhabitants = inhabitants;
 	}
 
@@ -104,6 +105,7 @@ public class Cave {
 			return false;
 		return true;
 	}
+
 
 	
 }
