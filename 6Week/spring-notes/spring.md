@@ -107,4 +107,29 @@
   - @ResponseBody - there is no view, the response is just the object returned
   - @PathVariable - to get a variable from the path,  /users/:id
   - @RequestParam - to get anything in path marked by question mark /user?name=Sam
-  
+# Spring Data
+  - Not a module, it is a subset of spring ORM.
+  - It is a project that is designed to make sql even easier than orm
+  - it still requires properly built ORM models, but it can generate the sql for queries in a new exciting way
+  - Its built on top of hibernate, which is on top of JDBC
+  - we can still use HQL, and maybe sql if you are crazy
+  - still have jpa annotations
+  - still have same object state and hibernate caching
+  - we are going to use the interface JpaRepository<T,I>
+  - this interface takes in a Model Type, and the type of the primary key (mostly Integer)
+  - we can write custom queries in this interface, using the @query annotation and then providing hql
+  - the method names in the interface, can also auto generate queries
+  - We do not have to implement the interface to get a working dao...
+  - FUNCTIONS WE GET
+    - getOne(id) 
+    - findById(Id) returns an Optional special object that is null or success
+    - findAll()
+    - save(T obj)//new and update
+    - delete(T obj)
+    - flush() make the cache update the database
+  - FUNCTIONS WE CAN MAKE
+    - make functions by the method name
+      - findByUsernameAndPassword(String username, string password)
+    - we can use @Query with HQL
+      - @Query("FROM Users WHERE name = :name")
+      - use sql with @Query("sql string", nativeQuery = true)
