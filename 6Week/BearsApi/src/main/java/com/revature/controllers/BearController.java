@@ -2,6 +2,8 @@ package com.revature.controllers;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -40,5 +42,13 @@ public class BearController {
 	public Bear saveOneBear( @RequestBody Bear b) {
 		return bs.saveOneBear(b);
 	}
+	
+	@PostMapping("login")
+	public Bear login(@RequestBody String bearName, HttpServletRequest req) {
+		Bear b = bs.findBearByName(bearName);
+		req.getSession().setAttribute("bear", b);
+		return b;
+	}
+	
 	
 }

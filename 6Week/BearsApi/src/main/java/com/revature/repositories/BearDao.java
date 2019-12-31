@@ -15,5 +15,7 @@ public interface BearDao extends JpaRepository<Bear, Integer>{
 	
 	@Query("FROM Bear")
 	public Bear customMethod();
+
+	public Bear findBearByName(String bearName);
 	
 }

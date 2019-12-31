@@ -39,4 +39,10 @@ public class BearServiceImpl implements BearService{
 		return bd.save(b);
 	}
 
+	@Override
+	public Bear findBearByName(String bearName) {
+		// TODO Auto-generated method stub
+		return bd.findBearByName(bearName);
+	}
+
 }

@@ -11,5 +11,7 @@ public interface BearService {
 	public Bear findBearById(int id);
 
 	public Bear saveOneBear(Bear b);
+
+	public Bear findBearByName(String bearName);
 	
 }
