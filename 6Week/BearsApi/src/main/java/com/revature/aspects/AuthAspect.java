@@ -10,6 +10,7 @@ import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 
 import com.revature.annotations.AuthAnno;
+import com.revature.exceptions.UnauthorizedException;
 import com.revature.models.Bear;
 
 @Aspect
@@ -23,14 +24,14 @@ public class AuthAspect {
 		Bear b = getLoggedInBear();
 		//System.out.println(b);
 		if(b == null) {
-			throw new Exception();
+			throw new UnauthorizedException();
 		} else {
 			for(String role : auth.roles()) {
 				if(b.getName().equals(role)) {//if they are appropriately permissioned
 					return pjp.proceed();//return the value that they were supposed to get
 				}
 			}
-			throw new Exception();
+			throw new UnauthorizedException();
 		}
 	}
 	

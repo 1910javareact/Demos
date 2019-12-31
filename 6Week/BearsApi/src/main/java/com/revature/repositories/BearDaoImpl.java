@@ -25,7 +25,6 @@ public class BearDaoImpl  {
 	}
 	
 	
-	@Override
 	public List<Bear> findAllBears() {
 		// TODO Auto-generated method stub
 		List<Bear> ret = new ArrayList<>();
@@ -39,8 +38,6 @@ public class BearDaoImpl  {
 		return ret;
 	}
 
-
-	@Override
 	public Bear findBearById(int id) {
 		// TODO Auto-generated method stub
 		Session s = sf.openSession();
@@ -54,7 +51,6 @@ public class BearDaoImpl  {
 	}
 
 
-	@Override
 	public Bear saveOneBear(Bear b) {
 		// TODO Auto-generated method stub
 		Session s = sf.openSession();
