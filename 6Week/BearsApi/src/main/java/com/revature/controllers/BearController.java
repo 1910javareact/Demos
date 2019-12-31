@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.revature.annotations.AuthAnno;
 import com.revature.models.Bear;
 import com.revature.services.BearService;
 
@@ -29,6 +30,7 @@ public class BearController {
 	
 	
 	@GetMapping
+	@AuthAnno(roles = {"Yogi"})
 	public List<Bear> getAllBears(){
 		return bs.getAllBears();
 	}
