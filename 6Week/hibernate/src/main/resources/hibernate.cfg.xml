@@ -11,7 +11,7 @@
 		<property name="hibernate.connection.password">yourPassword</property>
 		<property name="hibernate.connection.url">jdbc:postgresql://host:port/databasename</property>
 		<property name="hibernate.default.schema">theschema</property>
-		<property name="hibernate.hbm2ddl.auto">verify</property>
+		<property name="hibernate.hbm2ddl.auto">validate</property>
 		<mapping class="com.revature.models.Bear"/>
 		<mapping class="com.revature.models.Cave"/>
 	</session-factory>
